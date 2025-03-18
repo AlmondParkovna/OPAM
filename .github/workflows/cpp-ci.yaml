@@ -1,4 +1,4 @@
-name: C++ CI on Windows
+name: C++ CI on Linux
 
 on:
   push:
@@ -12,18 +12,24 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest  # Запуск на виртуальной машине Windows
+    runs-on: ubuntu-latest  # Запуск на виртуальной машине Ubuntu
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3  # Клонирование репозитория
 
+    - name: Install dependencies
+      run: sudo apt-get install -y cmake g++  # Устанавливаем CMake и g++
+
     - name: Configure and Build
       run: |
         mkdir build
         cd build
-        cmake ..                # Запуск CMake для настройки проекта
-        cmake --build .         # Сборка проекта
+        cmake ..                # Настройка CMake
+        cmake --build .         # Компиляция
+
+    - name: Debug - List build folder
+      run: ls build  # Покажет, какие файлы созданы
 
     - name: Run Program
-      run: .\build\my_program.exe  # Запуск программы на Windows
+      run: ./build/my_program  # Запуск программы на Linux
