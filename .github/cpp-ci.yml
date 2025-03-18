@@ -1,0 +1,21 @@
+name: C++ CI on Windows
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: windows-latest  # Запуск на виртуальной машине Windows
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3  # Клонирование репозитория
+
+    - name: Configure and Build
+      run: |
+        mkdir build
+        cd build
+        cmake ..                # Запуск CMake для настройки проекта
+        cmake --build .         # Сборка проекта
+
+    - name: Run Program
+      run: .\build\my_program.exe  # Запуск программы на Windows
