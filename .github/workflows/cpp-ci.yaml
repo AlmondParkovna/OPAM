@@ -3,33 +3,33 @@ name: C++ CI on Linux
 on:
   push:
     branches:
-      - main      # Запуск при пуше в ветку main
-      - develop   # Запуск при пуше в ветку develop
+      - main      
+      - develop   
   pull_request:
     branches:
-      - main      # Запуск при создании pull request в ветку main
-      - develop   # Запуск при создании pull request в ветку develop
+      - main      
+      - develop   
 
 jobs:
   build:
-    runs-on: ubuntu-latest  # Запуск на виртуальной машине Ubuntu
+    runs-on: ubuntu-latest  
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3  # Клонирование репозитория
+      uses: actions/checkout@v3  
 
     - name: Install dependencies
-      run: sudo apt-get install -y cmake g++  # Устанавливаем CMake и g++
+      run: sudo apt-get install -y cmake g++ 
 
     - name: Configure and Build
       run: |
         mkdir build
         cd build
-        cmake ..                # Настройка CMake
-        cmake --build .         # Компиляция
+        cmake ..                
+        cmake --build .         
 
     - name: Debug - List build folder
-      run: ls build  # Покажет, какие файлы созданы
+      run: ls build  
 
     - name: Run Program
-      run: ./build/my_program  # Запуск программы на Linux
+      run: ./build/my_program  
