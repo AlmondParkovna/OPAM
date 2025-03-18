@@ -1,6 +1,14 @@
 name: C++ CI on Windows
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main      # Запуск при пуше в ветку main
+      - develop   # Запуск при пуше в ветку develop
+  pull_request:
+    branches:
+      - main      # Запуск при создании pull request в ветку main
+      - develop   # Запуск при создании pull request в ветку develop
 
 jobs:
   build:
